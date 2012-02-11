@@ -7,7 +7,7 @@ spare parts I had laying around.
 The plan is to add:
 
 * Twitter’s Bootstrap.
-* Twitter auth should create a user account.
+* ~~Twitter auth should create a user account.~~
 * The ability to create an app by running a command and an app name, replacing
 Warm Air everywhere with the new app name.
 
