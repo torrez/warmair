@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import tornado.web
 from tornado.auth import TwitterMixin
 from tornado.escape import json_encode, json_decode
@@ -22,6 +24,31 @@ class BaseHandler(tornado.web.RequestHandler):
         return super(BaseHandler, self).render(template_name, **kwargs)
 
     def sign_person_in(self, user):
+        """
+        If we’ve seen the user before, update their info, otherwise create
+        a brand new user record and set their cookie.
+        
+        """ 
+        e_user = self.db.get("SELECT * FROM user WHERE twitter_id = %s", user['id'])
+        print "post here"
+        if e_user:
+            self.db.execute("""UPDATE user 
+                SET name=%s, screen_name=%s, description=%s, location=%s, url=%s,
+                    profile_image_url=%s, time_zone=%s, access_token=%s, 
+                    updated_at=NOW()
+                WHERE twitter_id = %s""", user['name'], 
+                    user['username'], user['description'], user['location'],
+                    user['url'], user['profile_image_url'], user['time_zone'], 
+                    json_encode(user['access_token']),e_user['twitter_id'])
+        else:
+            self.db.execute("""INSERT INTO user (   
+                    twitter_id, name, screen_name, description, location, url, 
+                    profile_image_url, time_zone, access_token, created_at, updated_at)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), NOW())""",
+                    user['id'], user['name'], user['username'], user['description'], user['location'],
+                    user['url'], user['profile_image_url'], user['time_zone'],
+                    json_encode(user['access_token']))
+        
         pid = {'id':user['id'], 'name':user['name'], 'username':user['username']}
         self.set_secure_cookie("pid", tornado.escape.json_encode(pid), expires_days=365)
         

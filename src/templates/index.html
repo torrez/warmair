@@ -5,7 +5,7 @@
 </head>
 <body>
 {% if current_user %}
-Hello {{ current_user['username'] }}.
+Hello {{ current_user['username'] }}, <a href="/sign-out">sign out</a>.
 {% else %}
 <a href="/sign-in">sign in with Twitter</a>
 {% end %}

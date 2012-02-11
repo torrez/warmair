@@ -1,6 +1,6 @@
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `twitter_id` int(11) NOT NULL DEFAULT '0',
+  `twitter_id` bigint(11) NOT NULL DEFAULT '0',
   `name` varchar(30) DEFAULT NULL,
   `screen_name` varchar(30) DEFAULT NULL,
   `description` text,
