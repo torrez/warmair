@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Warm Air</title>
-</head>
-<body>
-{% if current_user %}
-Hello {{ current_user['username'] }}, <a href="/sign-out">sign out</a>.
-{% else %}
-<a href="/sign-in">sign in with Twitter</a>
+{% extends "base.html" %}
+
+{% block main %}
+
+<h1>Getting Started</h1>
+<ol>
+    <li>Drop <a href="http://twitter.github.com/bootstrap/">Twitter’s Bootstrap</a>
+        in /static</li>
+    <li>Copy settings.example.py to settings.py</li>
+    <li>Create a database and put the credentials in settings.py</li>
+    <li>Create a new Twitter app and put the consumer key and secret in settings.py</li>
+    <li>Sign in</li>
+</ol>
 {% end %}
-</body>
-</html>
+

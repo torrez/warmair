@@ -1,0 +1,6 @@
+[submodule "src/static/bootstrap"]
+	path = src/static/bootstrap
+	url = https://github.com/twitter/bootstrap/
+[submodule "src/static/jquery"]
+	path = src/static/jquery
+	url = https://github.com/jquery/jquery
