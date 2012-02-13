@@ -1,6 +1,5 @@
 from tornado.options import define, options
 
-
 def parse_dictionary(settings):
     for key, value in settings.iteritems():
         if key in options:
