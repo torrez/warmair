@@ -12,7 +12,7 @@ settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
     "template_path":  os.path.join(os.path.dirname(__file__), "templates"),
     "debug":True,
-    "login_url":"/twitter/auth",
+    "login_url":"/sign-in",
     "twitter_access_token": {
         "secret": "", 
         "user_id": "", 

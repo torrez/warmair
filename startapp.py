@@ -31,13 +31,14 @@ else:
 ##
 ## settings.example.py
 ##
-f = open(args.destination + args.application + '/' + 'settings.example.py')
+f = open(args.destination + args.application + '/' + 'settings.example.py', 'r')
 settings = f.read()
 f.close()
 
 cookie_secret = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
 name_space = {'cookie_secret': cookie_secret}
 t = Template(settings, searchList=[name_space])
-
-print t
+f = open(args.destination + args.application + '/' + 'settings.py', 'w')
+f.write(str(t))
+f.close()
 
